@@ -20,8 +20,6 @@ class MovieListFragment : Fragment() {
 
     private val viewModel: MovieListViewModel by viewModels()
 
-    private var movieList = listOf<MovieResponse>()
-
     private var movieFilter = MovieListFilter.POPULAR
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +45,9 @@ class MovieListFragment : Fragment() {
     private fun getData() {
         viewModel.apply {
             getListMovie(movieFilter)
+
+            var movieList = listOf<MovieResponse>()
+
             listMovie.observe(viewLifecycleOwner) {
                 movieList = it
             }
