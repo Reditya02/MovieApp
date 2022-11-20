@@ -2,6 +2,7 @@ package com.example.movieapp.ui.movielist
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -12,6 +13,7 @@ import com.example.movieapp.R
 import com.example.movieapp.data.remote.model.MovieResponse
 import com.example.movieapp.databinding.FragmentMovieListBinding
 import com.example.movieapp.helper.MovieListFilter
+import java.util.*
 
 
 class MovieListFragment : Fragment() {
@@ -42,11 +44,20 @@ class MovieListFragment : Fragment() {
         fabClicked()
     }
 
+    private fun setActionBarTitle() {
+        val title = movieFilter.toString().replace('_', ' ')
+        (activity as AppCompatActivity).supportActionBar?.title = title
+    }
+
     private fun getData() {
+
+
         viewModel.apply {
             getListMovie(movieFilter)
 
             var movieList = listOf<MovieResponse>()
+
+            setActionBarTitle()
 
             listMovie.observe(viewLifecycleOwner) {
                 movieList = it
