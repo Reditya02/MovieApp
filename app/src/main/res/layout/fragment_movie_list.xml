@@ -22,4 +22,50 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
+    <com.nambimobile.widgets.efab.ExpandableFabLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fab_layout">
+        
+        <com.nambimobile.widgets.efab.ExpandableFab
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:id="@+id/fab_filter"
+            app:efab_color="?colorPrimary"
+            app:efab_icon="@drawable/ic_filter"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp" />
+        
+        <com.nambimobile.widgets.efab.FabOption
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fab_now_playing"
+            app:fab_icon="@drawable/ic_now_playing"
+            app:label_text="Now Playing"/>
+
+        <com.nambimobile.widgets.efab.FabOption
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fab_upcoming"
+            app:fab_icon="@drawable/ic_upcoming"
+            app:label_text="Upcoming"/>
+
+        <com.nambimobile.widgets.efab.FabOption
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fab_popular"
+            app:fab_icon="@drawable/ic_popular"
+            app:label_text="Popular"/>
+
+        <com.nambimobile.widgets.efab.FabOption
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fab_top_rated"
+            app:fab_icon="@drawable/ic_top_rated"
+            app:label_text="Top Rated"/>
+
+
+    </com.nambimobile.widgets.efab.ExpandableFabLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

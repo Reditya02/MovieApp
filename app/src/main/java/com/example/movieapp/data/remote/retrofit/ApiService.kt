@@ -15,4 +15,14 @@ interface ApiService {
     fun getTopRatedMovie(
         @Query("api_key") apiKey: String
     ): Call<MoviesResponse>
+
+    @GET("movie/now_playing")
+    fun getNowPlayingMovie(
+        @Query("api_key") apiKey: String
+    ): Call<MoviesResponse>
+
+    @GET("movie/popular")
+    fun getUpcomingMovie(
+        @Query("api_key") apiKey: String
+    ): Call<MoviesResponse>
 }

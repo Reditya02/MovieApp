@@ -46,6 +46,6 @@ class MovieListViewModel : ViewModel() {
             }
         })
 
-        Log.d("Reditya ViewModel", Gson().toJson(listMovie))
+//        Log.d("Reditya ViewModel", Gson().toJson(listMovie))
     }
 }

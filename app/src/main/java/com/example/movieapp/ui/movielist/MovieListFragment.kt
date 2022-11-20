@@ -22,6 +22,8 @@ class MovieListFragment : Fragment() {
 
     private var movieList = listOf<MovieResponse>()
 
+    private var movieFilter = MovieListFilter.POPULAR
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -38,8 +40,13 @@ class MovieListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        getData()
+        fabClicked()
+    }
+
+    private fun getData() {
         viewModel.apply {
-            getListMovie(MovieListFilter.POPULAR)
+            getListMovie(movieFilter)
             listMovie.observe(viewLifecycleOwner) {
                 movieList = it
             }
@@ -49,17 +56,28 @@ class MovieListFragment : Fragment() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.button_profile, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
+    private fun fabClicked() {
+        binding.apply {
+            fabPopular.setOnClickListener {
+                movieFilter = MovieListFilter.POPULAR
+                getData()
+            }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.profile) {
-            val toProfile = MovieListFragmentDirections.actionMovieListFragmentToProfileFragment()
-            findNavController().navigate(toProfile)
+            fabTopRated.setOnClickListener {
+                movieFilter = MovieListFilter.TOP_RATED
+                getData()
+            }
+
+            fabNowPlaying.setOnClickListener {
+                movieFilter = MovieListFilter.NOW_PLAYING
+                getData()
+            }
+
+            fabUpcoming.setOnClickListener {
+                movieFilter = MovieListFilter.UPCOMING
+                getData()
+            }
         }
-        return true
     }
 
     private fun showRecycler(listMovie: List<MovieResponse>) {
@@ -90,6 +108,7 @@ class MovieListFragment : Fragment() {
                     repeatCount = LottieDrawable.INFINITE
                     playAnimation()
                 }
+                fabFilter.hide()
             } else {
                 recyclerView.visibility = View.VISIBLE
                 animLoading.apply {
@@ -97,8 +116,22 @@ class MovieListFragment : Fragment() {
                     pauseAnimation()
                 }
                 showRecycler(listMovie)
+                fabFilter.show()
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.button_profile, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.profile) {
+            val toProfile = MovieListFragmentDirections.actionMovieListFragmentToProfileFragment()
+            findNavController().navigate(toProfile)
+        }
+        return true
     }
 
     override fun onDestroy() {
