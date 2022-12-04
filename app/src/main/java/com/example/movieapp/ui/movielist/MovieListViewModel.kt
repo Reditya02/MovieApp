@@ -1,6 +1,5 @@
 package com.example.movieapp.ui.movielist
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,7 +8,6 @@ import com.example.movieapp.data.MovieRepository
 import com.example.movieapp.data.remote.retrofit.ApiClient
 import com.example.movieapp.data.remote.model.MovieResponse
 import com.example.movieapp.data.remote.model.MoviesResponse
-import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
