@@ -38,7 +38,6 @@ class MovieListViewModel : ViewModel() {
                 }
                 _listMovie.value = list
                 _isLoading.value = false
-                Log.d("Reditya enqueue", Gson().toJson(list))
             }
 
             override fun onFailure(call: Call<MoviesResponse>, t: Throwable) {
@@ -46,6 +45,5 @@ class MovieListViewModel : ViewModel() {
             }
         })
 
-//        Log.d("Reditya ViewModel", Gson().toJson(listMovie))
     }
 }

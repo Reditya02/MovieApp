@@ -50,8 +50,6 @@ class MovieListFragment : Fragment() {
     }
 
     private fun getData() {
-
-
         viewModel.apply {
             getListMovie(movieFilter)
 
