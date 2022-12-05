@@ -1,28 +1,34 @@
 package com.example.movieapp.ui.movielist
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieDrawable
 import com.example.movieapp.R
+import com.example.movieapp.data.locale.model.User
 import com.example.movieapp.data.remote.model.MovieResponse
 import com.example.movieapp.databinding.FragmentMovieListBinding
 import com.example.movieapp.helper.MovieListFilter
-import java.util.*
+import com.example.movieapp.ui.ViewModelFactory
+import com.example.movieapp.ui.login.LoginViewModel
 
 
 class MovieListFragment : Fragment() {
     private var _binding: FragmentMovieListBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: MovieListViewModel by viewModels()
+    private lateinit var viewModel: MovieListViewModel
 
     private var movieFilter = MovieListFilter.POPULAR
+
+    private lateinit var user: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,12 +39,23 @@ class MovieListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val application = requireNotNull(this.activity).application
+        val factory = ViewModelFactory(application)
+
+        viewModel = ViewModelProvider(this, factory)[MovieListViewModel::class.java]
+
         _binding = FragmentMovieListBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val email = MovieListFragmentArgs.fromBundle(arguments as Bundle).user
+
+        viewModel.getUser(email).observe(viewLifecycleOwner) {
+            user = it
+        }
 
         getData()
         fabClicked()
@@ -112,6 +129,7 @@ class MovieListFragment : Fragment() {
         binding.apply {
             if (isLoading) {
                 recyclerView.visibility = View.GONE
+                tvHello.visibility = View.GONE
                 animLoading.apply {
                     visibility = View.VISIBLE
                     setAnimation(R.raw.loading_movie)
@@ -121,6 +139,12 @@ class MovieListFragment : Fragment() {
                 fabFilter.hide()
             } else {
                 recyclerView.visibility = View.VISIBLE
+                if (user.username.isNotEmpty()) {
+                    tvHello.apply {
+                        visibility = View.VISIBLE
+                        text = "Hello ${user.username}"
+                    }
+                }
                 animLoading.apply {
                     visibility = View.GONE
                     pauseAnimation()

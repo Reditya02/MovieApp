@@ -7,6 +7,7 @@ import com.example.movieapp.data.locale.room.UserDatabase
 import com.example.movieapp.data.locale.UserRepository
 import com.example.movieapp.data.locale.preferences.LoginPreferences
 import com.example.movieapp.ui.login.LoginViewModel
+import com.example.movieapp.ui.movielist.MovieListViewModel
 import com.example.movieapp.ui.profile.ProfileViewModel
 import com.example.movieapp.ui.register.RegisterViewModel
 
@@ -25,6 +26,7 @@ class ViewModelFactory (application: Application) :
             modelClass.isAssignableFrom(RegisterViewModel::class.java) -> RegisterViewModel(repository) as T
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> LoginViewModel(repository) as T
             modelClass.isAssignableFrom(ProfileViewModel::class.java) -> ProfileViewModel(repository) as T
+            modelClass.isAssignableFrom(MovieListViewModel::class.java) -> MovieListViewModel(repository) as T
             else -> throw Throwable("ViewModel not Valid")
         }
     }

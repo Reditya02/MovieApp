@@ -3,16 +3,20 @@ package com.example.movieapp.ui.movielist
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.movieapp.helper.MovieListFilter
 import com.example.movieapp.data.MovieRepository
+import com.example.movieapp.data.locale.UserRepository
+import com.example.movieapp.data.locale.model.User
 import com.example.movieapp.data.remote.retrofit.ApiClient
 import com.example.movieapp.data.remote.model.MovieResponse
 import com.example.movieapp.data.remote.model.MoviesResponse
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MovieListViewModel : ViewModel() {
+class MovieListViewModel(private val userRepository: UserRepository) : ViewModel() {
     private val repository: MovieRepository = MovieRepository(ApiClient.getApiService())
 
     private var _listMovie = MutableLiveData<List<MovieResponse>>()
@@ -20,6 +24,14 @@ class MovieListViewModel : ViewModel() {
 
     private var _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
+
+    private val user = MutableLiveData<User>()
+    fun getUser(email: String): LiveData<User> {
+        viewModelScope.launch {
+            user.value = userRepository.getUserByEmail(email)
+        }
+        return user
+    }
 
     fun getListMovie(filter: MovieListFilter) {
         val list = mutableListOf<MovieResponse>()

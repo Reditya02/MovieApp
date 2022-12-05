@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_movieListFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <argument
+            android:name="user"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/movieDetailFragment"
@@ -57,5 +60,13 @@
             app:launchSingleTop="true"
             app:popUpToInclusive="true"
             app:popUpTo="@id/main_navigation"/>
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.movieapp.ui.editprofile.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" />
 </navigation>

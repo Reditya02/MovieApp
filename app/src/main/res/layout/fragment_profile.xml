@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tv_username"
-            android:text="Username"
+            android:text="@string/placeholder_username"
             android:textSize="24sp"
             android:textStyle="bold"
             android:textColor="@color/black"/>
@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tv_email"
-            android:text="Username"
+            android:text="@string/placeholder_email"
             android:textSize="18sp"
             android:textStyle="bold"/>
 
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="?colorPrimary"
             android:layout_marginTop="36dp"
-            android:text="ganti profil"/>
+            android:text="@string/edit_profile"/>
 
     </LinearLayout>
 
@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/btn_logout"
         android:backgroundTint="@color/red"
-        android:text="Keluar"
+        android:text="@string/log_out"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>

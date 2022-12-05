@@ -1,5 +1,6 @@
 package com.example.movieapp.ui.login
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -28,6 +29,8 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
         isLoggedIn.value = repository.checkLogin()
         return isLoggedIn
     }
+
+    fun getEmail() = repository.getEmail()
 
     private val loginStatus = MutableLiveData<TextMessage>()
     fun login(user: User): LiveData<TextMessage> {

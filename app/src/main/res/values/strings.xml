@@ -1,4 +1,21 @@
 <resources>
     <string name="app_name">Movie App</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="edit_profile">Edit Profile</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_address">Address</string>
+    <string name="save">Save</string>
+    <string name="placeholder_title">title</string>
+    <string name="placeholder_hello_name">Hello name</string>
+    <string name="placeholder_username">Username</string>
+    <string name="placeholder_email">Email</string>
+    <string name="log_out">Log Out</string>
+    <string name="already_have_account">Already have account?\ </string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_retype_password">Retype Password</string>
+    <string name="don_t_have_account">Don\'t have account?\ </string>
+    <string name="profile">Profile</string>
 </resources>

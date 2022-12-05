@@ -45,8 +45,11 @@ class LoginFragment : Fragment() {
         viewModel.apply {
             isAlreadyLogin().observe(viewLifecycleOwner) {
                 if (it) {
-                    val toHomeFragment = LoginFragmentDirections.actionLoginFragmentToMovieListFragment()
-                    findNavController().navigate(toHomeFragment)
+                    val email = getEmail()
+                    if (email.isNotEmpty()) {
+                        val toHomeFragment = LoginFragmentDirections.actionLoginFragmentToMovieListFragment(email)
+                        findNavController().navigate(toHomeFragment)
+                    }
                 }
             }
         }
@@ -113,7 +116,7 @@ class LoginFragment : Fragment() {
         viewModel.apply {
             login(user).observe(viewLifecycleOwner) {
                 if (isEmailValid && isPasswordValid && it == TextMessage.Ok) {
-                    val toHomeFragment = LoginFragmentDirections.actionLoginFragmentToMovieListFragment()
+                    val toHomeFragment = LoginFragmentDirections.actionLoginFragmentToMovieListFragment(user.email)
                     findNavController().navigate(toHomeFragment)
                 } else if (it == TextMessage.WrongEmailOrPassword) {
                     Toast.makeText(

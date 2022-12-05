@@ -21,6 +21,10 @@ class UserRepository(private val userDao: UserDao, private val pref: LoginPrefer
         return TextMessage.Ok
     }
 
+    suspend fun getUserByEmail(email: String) = userDao.getUserByEmail(email)
+
+    fun getEmail() = pref.loginEmail
+
     fun checkLogin(): Boolean = pref.isLogin
 
     fun logout() {

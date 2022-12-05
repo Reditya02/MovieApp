@@ -14,6 +14,9 @@ interface UserDao {
     @Query("select * from user where email like :email and password like :password")
     suspend fun getUser(email: String, password: String): User?
 
+    @Query("select * from user where email like :email")
+    suspend fun getUserByEmail(email: String): User?
+
     @Update
     fun updateData(user: User)
 }
