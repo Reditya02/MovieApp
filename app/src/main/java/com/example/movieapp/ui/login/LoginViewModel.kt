@@ -9,9 +9,14 @@ import com.example.movieapp.data.locale.UserRepository
 import com.example.movieapp.data.locale.model.User
 import com.example.movieapp.helper.TextChecker
 import com.example.movieapp.helper.TextMessage
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LoginViewModel(private val repository: UserRepository) : ViewModel() {
+@HiltViewModel
+class LoginViewModel @Inject constructor(
+    private val repository: UserRepository
+) : ViewModel() {
     private val edtEmailResponse = MutableLiveData<TextMessage>()
     fun checkEdtEmail(email: String): LiveData<TextMessage> {
         edtEmailResponse.value = TextChecker.checkEmail(email)

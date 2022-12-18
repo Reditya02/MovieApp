@@ -1,4 +1,4 @@
-package com.example.movieapp.data
+package com.example.movieapp.data.remote
 
 import com.example.movieapp.helper.Const.API_KEY
 import com.example.movieapp.helper.MovieListFilter

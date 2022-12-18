@@ -7,19 +7,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.movieapp.data.locale.model.User
 import com.example.movieapp.databinding.FragmentLoginBinding
 import com.example.movieapp.helper.TextMessage
 import com.example.movieapp.ui.ViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: LoginViewModel
+    private val viewModel: LoginViewModel by viewModels()
 
     private var isEmailValid = false
     private var isPasswordValid = false
@@ -31,10 +34,10 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        val application = requireNotNull(this.activity).application
-        val factory = ViewModelFactory(application)
-
-        viewModel = ViewModelProvider(this, factory)[LoginViewModel::class.java]
+//        val application = requireNotNull(this.activity).application
+//        val factory = ViewModelFactory(application)
+//
+//        viewModel = ViewModelProvider(this, factory)[LoginViewModel::class.java]
 
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root

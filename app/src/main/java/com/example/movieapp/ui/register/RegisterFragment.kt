@@ -6,19 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.movieapp.data.locale.model.User
 import com.example.movieapp.databinding.FragmentRegisterBinding
 import com.example.movieapp.helper.TextMessage
 import com.example.movieapp.ui.ViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RegisterFragment : Fragment() {
 
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: RegisterViewModel
+    private val viewModel: RegisterViewModel by viewModels()
 
     private var isUsernameValid = false
     private var isEmailValid = false
@@ -33,10 +36,10 @@ class RegisterFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
 
-        val application = requireNotNull(this.activity).application
-        val factory = ViewModelFactory(application)
-
-        viewModel = ViewModelProvider(this, factory)[RegisterViewModel::class.java]
+//        val application = requireNotNull(this.activity).application
+//        val factory = ViewModelFactory(application)
+//
+//        viewModel = ViewModelProvider(this, factory)[RegisterViewModel::class.java]
 
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
         return binding.root

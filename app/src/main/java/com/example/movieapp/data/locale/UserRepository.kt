@@ -6,8 +6,12 @@ import com.example.movieapp.data.locale.room.UserDao
 import com.example.movieapp.helper.TextMessage
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+import javax.inject.Inject
 
-class UserRepository(private val userDao: UserDao, private val pref: LoginPreferences) {
+class UserRepository @Inject constructor(
+    private val userDao: UserDao,
+    private val pref: LoginPreferences
+) {
     private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
 
     fun register(user: User) = executorService.execute { userDao.register(user) }

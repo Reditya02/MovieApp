@@ -18,13 +18,14 @@ import com.example.movieapp.databinding.FragmentMovieListBinding
 import com.example.movieapp.helper.MovieListFilter
 import com.example.movieapp.ui.ViewModelFactory
 import com.example.movieapp.ui.login.LoginViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MovieListFragment : Fragment() {
     private var _binding: FragmentMovieListBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: MovieListViewModel
+    private val viewModel: MovieListViewModel by viewModels()
 
     private var movieFilter = MovieListFilter.POPULAR
 
@@ -39,10 +40,10 @@ class MovieListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val application = requireNotNull(this.activity).application
-        val factory = ViewModelFactory(application)
-
-        viewModel = ViewModelProvider(this, factory)[MovieListViewModel::class.java]
+//        val application = requireNotNull(this.activity).application
+//        val factory = ViewModelFactory(application)
+//
+//        viewModel = ViewModelProvider(this, factory)[MovieListViewModel::class.java]
 
         _binding = FragmentMovieListBinding.inflate(inflater, container, false)
         return binding.root

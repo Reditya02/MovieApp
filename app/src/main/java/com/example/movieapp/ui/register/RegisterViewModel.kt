@@ -8,8 +8,13 @@ import com.example.movieapp.data.locale.model.User
 import com.example.movieapp.helper.TextChecker
 import com.example.movieapp.helper.TextChecker.checkPasswordRetype
 import com.example.movieapp.helper.TextMessage
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class RegisterViewModel(private val repository: UserRepository) : ViewModel() {
+@HiltViewModel
+class RegisterViewModel @Inject constructor(
+    private val repository: UserRepository
+) : ViewModel() {
     private val _edtEmailResponse = MutableLiveData<TextMessage>()
     val edtEmailResponse: LiveData<TextMessage> = _edtEmailResponse
 
