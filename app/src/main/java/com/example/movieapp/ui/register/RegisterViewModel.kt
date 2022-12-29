@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.movieapp.data.locale.UserRepository
 import com.example.movieapp.data.locale.model.User
-import com.example.movieapp.helper.TextChecker
-import com.example.movieapp.helper.TextChecker.checkPasswordRetype
-import com.example.movieapp.helper.TextMessage
+import com.example.helper.TextChecker
+import com.example.helper.TextChecker.checkPasswordRetype
+import com.example.helper.TextMessage
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

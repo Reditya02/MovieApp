@@ -1,12 +1,10 @@
 package com.example.movieapp.ui.movielist
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,9 +13,7 @@ import com.example.movieapp.R
 import com.example.movieapp.data.locale.model.User
 import com.example.movieapp.data.remote.model.MovieResponse
 import com.example.movieapp.databinding.FragmentMovieListBinding
-import com.example.movieapp.helper.MovieListFilter
-import com.example.movieapp.ui.ViewModelFactory
-import com.example.movieapp.ui.login.LoginViewModel
+import com.example.helper.MovieListFilter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

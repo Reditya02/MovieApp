@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.movieapp.helper.MovieListFilter
+import com.example.helper.MovieListFilter
 import com.example.movieapp.data.remote.MovieRepository
 import com.example.movieapp.data.locale.UserRepository
 import com.example.movieapp.data.locale.model.User

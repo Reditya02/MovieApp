@@ -1,4 +1,4 @@
-package com.example.movieapp.helper
+package com.example.helper
 
 object Const {
     const val API_KEY = "e215d322c543f49db29157aa85b9af2e"

@@ -1,4 +1,4 @@
-package com.example.movieapp.helper
+package com.example.helper
 
 enum class TextMessage {
     Ok,

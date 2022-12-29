@@ -1,4 +1,4 @@
-package com.example.movieapp.helper
+package com.example.helper
 
 import android.util.Patterns.EMAIL_ADDRESS
 

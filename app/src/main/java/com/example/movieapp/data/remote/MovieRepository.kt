@@ -1,8 +1,8 @@
 package com.example.movieapp.data.remote
 
-import com.example.movieapp.helper.Const.API_KEY
-import com.example.movieapp.helper.MovieListFilter
-import com.example.movieapp.helper.MovieListFilter.*
+import com.example.helper.Const.API_KEY
+import com.example.helper.MovieListFilter
+import com.example.helper.MovieListFilter.*
 import com.example.movieapp.data.remote.retrofit.ApiService
 
 class MovieRepository(private val apiService: ApiService) {

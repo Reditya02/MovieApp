@@ -7,12 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.movieapp.data.locale.model.User
 import com.example.movieapp.databinding.FragmentRegisterBinding
-import com.example.movieapp.helper.TextMessage
-import com.example.movieapp.ui.ViewModelFactory
+import com.example.helper.TextMessage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

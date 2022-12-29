@@ -3,7 +3,7 @@ package com.example.movieapp.data.locale
 import com.example.movieapp.data.locale.model.User
 import com.example.movieapp.data.locale.preferences.LoginPreferences
 import com.example.movieapp.data.locale.room.UserDao
-import com.example.movieapp.helper.TextMessage
+import com.example.helper.TextMessage
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import javax.inject.Inject
