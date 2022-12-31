@@ -36,11 +36,6 @@ class MovieListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-//        val application = requireNotNull(this.activity).application
-//        val factory = ViewModelFactory(application)
-//
-//        viewModel = ViewModelProvider(this, factory)[MovieListViewModel::class.java]
-
         _binding = FragmentMovieListBinding.inflate(inflater, container, false)
         return binding.root
     }

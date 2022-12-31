@@ -13,6 +13,8 @@ android {
 
     defaultConfig {
         applicationId "com.example.movieapp"
+        renderscriptTargetApi 11
+        renderscriptSupportModeEnabled true
         minSdk 21
         targetSdk 33
         versionCode 1
@@ -92,6 +94,8 @@ dependencies {
     implementation "com.google.dagger:hilt-android:2.44"
     kapt "com.google.dagger:hilt-android-compiler:2.44"
     kapt 'com.google.dagger:hilt-compiler:2.44'
+
+    implementation "androidx.work:work-runtime-ktx:2.7.1"
 
     implementation project(":helper")
 }

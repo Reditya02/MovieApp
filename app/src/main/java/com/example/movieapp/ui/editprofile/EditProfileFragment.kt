@@ -1,19 +1,30 @@
 package com.example.movieapp.ui.editprofile
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
+import androidx.work.Data
+import androidx.work.OneTimeWorkRequest
+import androidx.work.WorkManager
+import com.example.movieapp.worker.BlurWorker
 import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentEditProfileBinding
+import com.example.movieapp.ui.uriToFile
+import java.util.*
 
 class EditProfileFragment : Fragment() {
 
     private var _binding: FragmentEditProfileBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var workManager: WorkManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +38,11 @@ class EditProfileFragment : Fragment() {
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (activity as AppCompatActivity).supportActionBar?.title = "Profile"
+
+        workManager = WorkManager.getInstance(requireContext())
+
         binding.apply {
             resources.apply {
                 tvTitleEditProfile.text = getString(R.string.edit_profile)
@@ -45,6 +61,10 @@ class EditProfileFragment : Fragment() {
                 btnSave.text = getString(R.string.save)
 
             }
+            btnSave.setOnClickListener {
+                val save = EditProfileFragmentDirections.actionEditProfileFragmentToProfileFragment()
+                findNavController().navigate(save)
+            }
             btnEditAvatar.setOnClickListener {
                 openGallery()
             }
@@ -52,7 +72,30 @@ class EditProfileFragment : Fragment() {
     }
 
     private val imageResult = registerForActivityResult(ActivityResultContracts.GetContent()) {
+        val image = it?.let { it1 ->
+            uriToFile(it1, requireContext())
+        }
+
         binding.ivAvatar.setImageURI(it)
+
+        val data = Data.Builder()
+            .putString("image", image?.path)
+            .build()
+        val workRequest = OneTimeWorkRequest
+            .Builder(BlurWorker::class.java)
+            .setInputData(data)
+            .build()
+
+        workManager.enqueue(workRequest)
+        workManager.getWorkInfoByIdLiveData(workRequest.id).observe(viewLifecycleOwner) { workResult ->
+            if (workResult.state.isFinished) {
+                val result = workResult.outputData.keyValueMap["result"]
+                result?.let {
+                    binding.ivAvatar.setImageURI(result as Uri)
+                }
+            }
+        }
+
     }
 
     private fun openGallery() {
