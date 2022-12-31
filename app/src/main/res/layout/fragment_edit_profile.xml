@@ -8,10 +8,30 @@
     tools:context=".ui.editprofile.EditProfileFragment"
     android:padding="24dp">
 
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/iv_avatar"
+        android:src="@drawable/ic_name"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_edit_profile"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="12dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_edit_avatar"
+        android:text="@string/upload_gambar"
+        app:layout_constraintTop_toBottomOf="@+id/iv_avatar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_title_register"
+        android:id="@+id/tv_title_edit_profile"
         android:text="@string/edit_profile"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -20,7 +40,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title_register"
+        app:layout_constraintTop_toBottomOf="@+id/btn_edit_avatar"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="48dp"
@@ -78,7 +98,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_register"
+        android:id="@+id/btn_save"
         android:text="@string/save"
         android:layout_marginBottom="96dp"
         app:layout_constraintBottom_toBottomOf="parent"

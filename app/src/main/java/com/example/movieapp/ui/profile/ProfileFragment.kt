@@ -24,24 +24,23 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
-
-//        val application = requireNotNull(this.activity).application
-//        val factory = ViewModelFactory(application)
-//
-//        viewModel = ViewModelProvider(this, factory)[ProfileViewModel::class.java]
-
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.btnLogout.setOnClickListener {
-            viewModel.logout()
-            val logout = ProfileFragmentDirections.actionProfileFragmentToLoginFragment()
-            findNavController().navigate(logout)
-        }
+        binding.apply {
+            btnLogout.setOnClickListener {
+                viewModel.logout()
+                val logout = ProfileFragmentDirections.actionProfileFragmentToLoginFragment()
+                findNavController().navigate(logout)
+            }
 
+            btnEditProfile.setOnClickListener {
+                val toEditProfile = ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment()
+                findNavController().navigate(toEditProfile)
+            }
+        }
     }
 }

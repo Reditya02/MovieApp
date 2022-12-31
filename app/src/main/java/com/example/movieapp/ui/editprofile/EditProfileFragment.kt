@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentEditProfileBinding
 
@@ -28,7 +29,7 @@ class EditProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             resources.apply {
-                tvTitleRegister.text = getString(R.string.edit_profile)
+                tvTitleEditProfile.text = getString(R.string.edit_profile)
                 layoutUsername.apply {
                     startIconDrawable = getDrawable(R.drawable.ic_profile)
                     hint = getString(R.string.hint_username)
@@ -37,14 +38,25 @@ class EditProfileFragment : Fragment() {
                     startIconDrawable = getDrawable(R.drawable.ic_name)
                     hint = getString(R.string.hint_name)
                 }
-//                layoutAddress.apply {
-//                    startIconDrawable = getDrawable(R.drawable.ic_address)
-//                    hint = getString(R.string.hint_address)
-//                }
-//                btnSave.text = getString(R.string.save)
+                layoutAddress.apply {
+                    startIconDrawable = getDrawable(R.drawable.ic_address)
+                    hint = getString(R.string.hint_address)
+                }
+                btnSave.text = getString(R.string.save)
 
             }
+            btnEditAvatar.setOnClickListener {
+                openGallery()
+            }
         }
+    }
+
+    private val imageResult = registerForActivityResult(ActivityResultContracts.GetContent()) {
+        binding.ivAvatar.setImageURI(it)
+    }
+
+    private fun openGallery() {
+        imageResult.launch("image/*")
     }
 
     override fun onDestroy() {
