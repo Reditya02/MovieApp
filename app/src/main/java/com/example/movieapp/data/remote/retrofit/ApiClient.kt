@@ -1,5 +1,9 @@
 package com.example.movieapp.data.remote.retrofit
 
+import com.chuckerteam.chucker.api.ChuckerCollector
+import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.example.movieapp.BuildConfig
+import com.example.movieapp.application.MovieApp
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -9,6 +13,8 @@ import java.util.concurrent.TimeUnit
 object ApiClient {
     private const val BASE_URL = "https://api.themoviedb.org/3/"
 
+    private val context = MovieApp.context
+
     private val logging: HttpLoggingInterceptor
         get() {
             val httpLoggingInterceptor = HttpLoggingInterceptor()
@@ -17,8 +23,20 @@ object ApiClient {
             }
         }
 
+    private val chucker: ChuckerInterceptor
+        get() {
+            return ChuckerInterceptor.Builder(context)
+                .collector(ChuckerCollector(context))
+                .maxContentLength(250000L)
+                .redactHeaders(emptySet())
+                .alwaysReadResponseBody(false)
+                .build()
+        }
+
+    private val loggingType = if (BuildConfig.DEBUG) chucker else logging
+
     private val client = OkHttpClient.Builder()
-        .addInterceptor(logging)
+        .addInterceptor(loggingType)
         .connectTimeout(300, TimeUnit.SECONDS)
         .readTimeout(300, TimeUnit.SECONDS)
         .build()
