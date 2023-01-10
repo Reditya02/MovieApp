@@ -16,7 +16,7 @@ import androidx.work.WorkManager
 import com.example.movieapp.worker.BlurWorker
 import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentEditProfileBinding
-import com.example.movieapp.ui.uriToFile
+import com.example.movieapp.worker.uriToFile
 import java.util.*
 
 class EditProfileFragment : Fragment() {

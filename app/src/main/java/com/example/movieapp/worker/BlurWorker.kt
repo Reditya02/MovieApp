@@ -5,8 +5,6 @@ import android.graphics.BitmapFactory
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import androidx.work.workDataOf
-import com.example.movieapp.ui.blurBitmap
-import com.example.movieapp.ui.writeBitmapToFile
 
 class BlurWorker(ctx: Context, param: WorkerParameters) : Worker(ctx, param) {
 

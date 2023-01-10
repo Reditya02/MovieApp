@@ -16,7 +16,7 @@
 
 @file:JvmName("WorkerUtils")
 
-package com.example.movieapp.ui
+package com.example.movieapp.worker
 
 
 import android.content.ContentResolver
